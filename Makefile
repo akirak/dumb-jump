@@ -1,18 +1,11 @@
-CASK ?= cask
-EMACS ?= emacs
-
 all: test
 
 test: unit
 
 unit:
-	${CASK} exec ert-runner
-
-install:
-	${CASK} install
+	elinter -t --ert-runner
 
 test-concurrent:
-	cask
 	@go run test/ert_runner.go -p ".*-ag-.*" -p ".*-rg-.*" test/dumb-jump-test.el
 
 test-go:
